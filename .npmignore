@@ -1,0 +1,7 @@
+# Directories
+src
+node_modules
+
+# Files
+tsconfig.json
+tsup.config.json

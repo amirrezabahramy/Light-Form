@@ -55,10 +55,7 @@ function useForm<TFields extends Record<string, string | number>>({
   const getOne = (name: keyof TFields) => {
     return fields[name];
   };
-  const setMany = (
-    fields: Partial<Record<string, string | number>>,
-    makeFieldsDirty: boolean
-  ) => {
+  const setMany = (fields: Partial<TFields>, makeFieldsDirty: boolean) => {
     makeFieldsDirty &&
       setDirty((prev) => ({
         ...prev,
@@ -104,9 +101,15 @@ function useForm<TFields extends Record<string, string | number>>({
     }
   };
 
+  const reset = (fields: Partial<TFields>) => {
+    setFields({ ...defaultValues, ...fields });
+  };
+
+  // Return object
   return {
     control,
     handleSubmit,
+    reset,
     fieldStates: {
       fields,
       isBlured,
